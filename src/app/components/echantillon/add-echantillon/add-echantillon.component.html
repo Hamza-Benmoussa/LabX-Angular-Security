@@ -1,0 +1,55 @@
+<form [formGroup]="echantillonForm">
+  <div class="card shadow mb-3" style="margin-right: 444px;margin-left: 326px;padding-top: 0px;margin-bottom: 0px;padding-bottom: 0px;">
+    <div class="card-header py-3">
+      <p class="text-primary m-0 fw-bold">Ajouter Material</p>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="nomAnalyse"><strong>Nom Analyse</strong></label>
+            <input class="form-control" type="text" id="nomAnalyse" placeholder="Nom Analyse" name="nomAnalyse" formControlName="nomAnalyse" required>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="patient"><strong>Patient</strong></label>
+            <select class="form-select" id="patient" formControlName="patient" required>
+              <option *ngFor="let patient of patients" [ngValue]="patient">{{ patient.nom }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="utilisateurPreleveur"><strong>Utilisateur Preleveur</strong></label>
+            <select class="form-select" id="utilisateurPreleveur" formControlName="utilisateurPreleveur" required>
+              <option *ngFor="let utilisateur of utilisateurs" [ngValue]="utilisateur">{{ utilisateur.nom }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="datePrelevement"><strong>Date Prélèvement</strong></label>
+            <input class="form-control" type="date" id="datePrelevement" formControlName="datePrelevement" required>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="material"><strong>Material</strong></label>
+            <select class="form-select" id="material" formControlName="material" required>
+              <option *ngFor="let material of materials" [ngValue]="material">{{ material.nomechan }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xxl-12">
+          <div class="mb-3">
+            <label class="form-label" for="quantity"><strong>Quantity</strong></label>
+            <input class="form-control" type="number" id="quantity" formControlName="quantity" required>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="button" (click)="addMaterial()" style="margin-right: 10px">Add Material</button>
+      <button class="btn btn-success" type="submit" (click)="onSubmit()">Ajouter</button>
+    </div>
+  </div>
+</form>
