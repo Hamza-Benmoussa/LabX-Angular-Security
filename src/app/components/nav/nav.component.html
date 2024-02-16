@@ -16,9 +16,15 @@
         <li class="nav-item" *ngIf="isRespo || isTech"><a class="nav-link"  routerLink="/test-analyse" style="color: rgba(224,217,217,0.9);">TestAnalyse</a></li>
       </ul>
       <p class="ms-auto navbar-text actions" data-bss-hover-animate="rubberBand" style="margin-bottom: -12px;margin-top: -11px;">
+
         <li *ngIf="isAuthenticated">
           <a (click)="logout()" class="login"  style="color: rgba(224,217,217,0.9);">logout</a>
         </li>
+        <a *ngIf="isAuthenticated"
+          href="#" class="d-flex align-items-center text-white text-decoration-none"  aria-expanded="false">
+          <i class="fa-solid fa-circle-user"></i>
+          <span class="d-none d-sm-inline mx-1">{{ name }}</span>
+        </a>
         <li *ngIf="!isAuthenticated">
           <a class="login" routerLink="/auth"  style="color: rgba(224,217,217,0.9);">login</a>
         </li>

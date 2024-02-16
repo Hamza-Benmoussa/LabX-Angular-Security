@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {Subscription} from "rxjs";
 import {LoggerUser} from "../../entity/logger-user.model";
@@ -8,13 +8,14 @@ import {LoggerUser} from "../../entity/logger-user.model";
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit , OnDestroy {
 
   userSub !: Subscription;
   isAuthenticated = false;
   isRespo = false;
   isPreleve = false;
   isTech = false;
+  name:string|undefined;
   constructor(private  authService : AuthService) { }
 
   ngOnInit(): void {
@@ -23,8 +24,10 @@ export class NavComponent implements OnInit {
       if (!this.isAuthenticated){
         this.initializeState();
       }
-      else if(!!loggedUser)
-      this.setRole(loggedUser)
+      else if(!!loggedUser){
+        this.setRole(loggedUser);
+        this.name=loggedUser?.username
+      }
     })
   }
 
@@ -46,6 +49,10 @@ export class NavComponent implements OnInit {
     this.isRespo = false;
     this.isTech = false;
     this.isPreleve = false;
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 
 

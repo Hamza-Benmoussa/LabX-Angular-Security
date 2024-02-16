@@ -34,56 +34,57 @@ import {AfficherNormeComponent} from "./components/norme/afficher-norme/afficher
 import {UpdateNormeComponent} from "./components/norme/update-norme/update-norme.component";
 import {UpdateAnalyseComponent} from "./components/analyse/update-analyse/update-analyse.component";
 import {AuthenticationComponent} from "./components/authentication/authentication.component";
+import {AuthGuardService} from "./service/auth.guard.service";
 
 const routes: Routes = [
 
-  {path : "patient" , component : PatientComponent},
-  {path : "add-patient" , component : AddPatientComponent},
-  {path : "update-patient/:id" , component : UpdatePatientComponent},
+  {path : "patient" , component : PatientComponent ,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path : "add-patient" , component : AddPatientComponent ,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path : "update-patient/:id" , component : UpdatePatientComponent ,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
 
-  {path:"add-type" , component :AddTypeComponent},
-  {path : "type-analyse" , component : TypeAnalyseComponent},
-  {path:"update-type/:id" , component :UpdateTypeComponent},
+  {path:"add-type" , component :AddTypeComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path : "type-analyse" , component : TypeAnalyseComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"update-type/:id" , component :UpdateTypeComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
 
-  {path : "test-analyse" , component : TestAnalyseComponent},
-  {path:"add-test" , component :AddTestComponent},
-  {path:"update-test" , component :UpdateTestComponent},
-  {path:"details-test" , component :DetailsTestComponent},
+  {path : "test-analyse" , component : TestAnalyseComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
+  {path:"add-test" , component :AddTestComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
+  {path:"update-test" , component :UpdateTestComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
+  {path:"details-test" , component :DetailsTestComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
 
 
-  {path : "afficher-reactif" , component : AfficherReactifComponent},
-  {path : "add-reactif" , component : AddReactifComponent},
-  {path : "update-reactif/:id" , component : UpdateReactifComponent},
+  {path : "afficher-reactif" , component : AfficherReactifComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path : "add-reactif" , component : AddReactifComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path : "update-reactif/:id" , component : UpdateReactifComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
 
-  {path:"update-analyse/:id" , component :UpdateAnalyseComponent},
-  {path : "analyse" , component : AnalyseComponent},
+  {path:"update-analyse/:id" , component :UpdateAnalyseComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
+  {path : "analyse" , component : AnalyseComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','TECHNICIEN']}},
 
-  {path : "echantillon" , component : EchantillonComponent},
-  {path:"add-echantillon" , component :AddEchantillonComponent},
-  {path:"update-echantillon/:id" , component :UpdateEchantillonComponent},
-  {path:"details-echantillon" , component :DetailsEchantillonComponent},
+  {path : "echantillon" , component : EchantillonComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path:"add-echantillon" , component :AddEchantillonComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path:"update-echantillon/:id" , component :UpdateEchantillonComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path:"details-echantillon" , component :DetailsEchantillonComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
 
-  {path : "planification" , component : PlanificationComponent},
-  {path:"add-planification" , component :AddPlanificationComponent},
-  {path:"update-planification" , component :UpdatePlanificationComponent},
+  {path : "planification" , component : PlanificationComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path:"add-planification" , component :AddPlanificationComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
+  {path:"update-planification" , component :UpdatePlanificationComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR']}},
 
-  {path:"add-material" , component :AddMaterialComponent},
-  {path:"afficher-material" , component :AfficherMaterialComponent},
-  {path:"update-material/:id" , component:UpdateMaterialComponent},
+  {path:"add-material" , component :AddMaterialComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"afficher-material" , component :AfficherMaterialComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"update-material/:id" , component:UpdateMaterialComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
 
-  {path:"afficher-utilisateur" , component :AfficherUtilisateurComponent},
-  {path:"add-utilisateur" , component :AddUtilisateurComponent},
-  {path:"update-utilisateur/:id" , component :UpdateUtilisateurComponent},
+  {path:"afficher-utilisateur" , component :AfficherUtilisateurComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"add-utilisateur" , component :AddUtilisateurComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"update-utilisateur/:id" , component :UpdateUtilisateurComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
 
-  {path:"add-norme" , component :AddNormeComponent},
-  {path:"afficher-norme" , component :AfficherNormeComponent},
-  {path:"update-norme/:id" , component :UpdateNormeComponent},
+  {path:"add-norme" , component :AddNormeComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"afficher-norme" , component :AfficherNormeComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
+  {path:"update-norme/:id" , component :UpdateNormeComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE']}},
 
   {path:"auth" , component:AuthenticationComponent},
 
 
   {path : "" , component : AuthenticationComponent},
-  {path : "nav" , component : NavComponent},
+  {path : "nav" , component : NavComponent,canActivate : [AuthGuardService],data:{role:['RESPONSABLE_LABORATOIRE','PRELEVEUR','TECHNICIEN']}},
 ];
 
 @NgModule({
