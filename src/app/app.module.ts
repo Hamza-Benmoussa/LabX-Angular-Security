@@ -20,7 +20,7 @@ import { UpdateTestComponent } from './components/test-analyse/update-test/updat
 import { DetailsTestComponent } from './components/test-analyse/details-test/details-test.component';
 import { AddTypeComponent } from './components/type-analyse/add-type/add-type.component';
 import { UpdateTypeComponent } from './components/type-analyse/update-type/update-type.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule , FormsModule} from "@angular/forms";
 import { AddPatientComponent } from './components/patient/add-patient/add-patient.component';
 import { UpdatePatientComponent } from './components/patient/update-patient/update-patient.component';
@@ -38,6 +38,8 @@ import { AddNormeComponent } from './components/norme/add-norme/add-norme.compon
 import { UpdateNormeComponent } from './components/norme/update-norme/update-norme.component';
 import { AfficherNormeComponent } from './components/norme/afficher-norme/afficher-norme.component';
 import {UpdateAnalyseComponent} from "./components/analyse/update-analyse/update-analyse.component";
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import {AuthInterceptorService} from "./service/auth.interceptor.service";
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import {UpdateAnalyseComponent} from "./components/analyse/update-analyse/update
     AddNormeComponent,
     UpdateNormeComponent,
     AfficherNormeComponent,
-    UpdateAnalyseComponent
+    UpdateAnalyseComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,13 @@ import {UpdateAnalyseComponent} from "./components/analyse/update-analyse/update
     HttpClientModule,
     ReactiveFormsModule, FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptorService,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

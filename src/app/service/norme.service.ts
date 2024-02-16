@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Norme} from "../entity/Norme";
 import {MaterialEchan} from "../entity/MaterialEchan";
 
-const baseUrl = "http://localhost:8080/api/normes"
+const baseUrl = "http://localhost:8088/api/normes"
 @Injectable({
   providedIn: 'root'
 })

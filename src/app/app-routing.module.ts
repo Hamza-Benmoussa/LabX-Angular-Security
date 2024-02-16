@@ -33,6 +33,7 @@ import {AddNormeComponent} from "./components/norme/add-norme/add-norme.componen
 import {AfficherNormeComponent} from "./components/norme/afficher-norme/afficher-norme.component";
 import {UpdateNormeComponent} from "./components/norme/update-norme/update-norme.component";
 import {UpdateAnalyseComponent} from "./components/analyse/update-analyse/update-analyse.component";
+import {AuthenticationComponent} from "./components/authentication/authentication.component";
 
 const routes: Routes = [
 
@@ -78,7 +79,10 @@ const routes: Routes = [
   {path:"afficher-norme" , component :AfficherNormeComponent},
   {path:"update-norme/:id" , component :UpdateNormeComponent},
 
-  {path : "" , component : HomeComponent},
+  {path:"auth" , component:AuthenticationComponent},
+
+
+  {path : "" , component : AuthenticationComponent},
   {path : "nav" , component : NavComponent},
 ];
 

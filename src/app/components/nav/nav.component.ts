@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../service/auth.service";
+import {Subscription} from "rxjs";
+import {LoggerUser} from "../../entity/logger-user.model";
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  userSub !: Subscription;
+  isAuthenticated = false;
+  isRespo = false;
+  isPreleve = false;
+  isTech = false;
+  constructor(private  authService : AuthService) { }
 
   ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe(loggedUser =>{
+      this.isAuthenticated =!!loggedUser;
+      if (!this.isAuthenticated){
+        this.initializeState();
+      }
+      else if(!!loggedUser)
+      this.setRole(loggedUser)
+    })
   }
+
+  logout() {
+    this.authService.logout();
+  }
+  setRole(loggedUser : LoggerUser | null){
+    if (loggedUser?.roles.includes("RESPONSABLE_LABORATOIRE"))
+      this.isRespo = true
+    else if (!!loggedUser?.roles.includes("PRELEVEUR")) {
+      this.isPreleve =true;
+    }
+    else if (!!loggedUser?.roles.includes("TECHNICIEN")) {
+      this.isTech =true;
+    }
+  }
+
+  initializeState(){
+    this.isRespo = false;
+    this.isTech = false;
+    this.isPreleve = false;
+  }
+
 
 }

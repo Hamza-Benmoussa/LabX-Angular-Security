@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { EchantillonRequest } from "../entity/EchantillonRequest";
 import {Echantillon} from "../entity/Echantillon";
 
-const baseUrl="http://localhost:8080/api/echantillons";
+const baseUrl="http://localhost:8088/api/echantillons";
 @Injectable({
   providedIn: 'root'
 })

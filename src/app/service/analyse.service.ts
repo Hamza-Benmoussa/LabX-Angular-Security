@@ -5,7 +5,7 @@ import {MaterialEchan} from "../entity/MaterialEchan";
 import {Analyse} from "../entity/Analyse";
 import {AnalyseRequest} from "../entity/AnalyseRequest";
 
-const baseUrl="http://localhost:8080/api/analyses"
+const baseUrl="http://localhost:8088/api/analyses"
 @Injectable({
   providedIn: 'root'
 })

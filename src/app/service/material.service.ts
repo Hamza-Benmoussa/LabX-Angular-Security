@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Patient} from "../entity/Patient";
 import {MaterialEchan} from "../entity/MaterialEchan";
 
-const baseUrl="http://localhost:8080/api/materials";
+const baseUrl="http://localhost:8088/api/materials";
 
 @Injectable({
   providedIn: 'root'

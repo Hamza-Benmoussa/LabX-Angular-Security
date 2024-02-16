@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TypeAnalyse} from "../entity/TypeAnalyse";
 
-const baseUrl = "http://localhost:8080/api/typeanalyse"
+const baseUrl = "http://localhost:8088/api/typeanalyse"
 @Injectable({
   providedIn: 'root'
 })
